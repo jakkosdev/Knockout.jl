@@ -1,12 +1,13 @@
 module Knockout
 
-using WebIO, Observables, JSExpr, JSON, RelocatableFolders
+using WebIO, Observables, JSExpr, JSON, RelocatableFolders, Memoize
 import Observables: off, observe, AbstractObservable, ObservablePair
 
 export knockout
 
-const knockout_js = @path joinpath(@__DIR__, "..", "assets", "knockout.js")
-const knockout_punches_js = @path joinpath(@__DIR__, "..", "assets", "knockout_punches.js")
+folder_dir = @path joinpath(@__DIR__, "..")
+@memoize knockout_js() = joinpath(folder_dir, "assets", "knockout.js")
+@memoize knockout_punches_js() = joinpath(folder_dir, "assets", "knockout_punches.js")
 
 """
 `knockout(template, data=Dict(), extra_js = js""; computed = [], methods = [])`
@@ -25,8 +26,8 @@ You can pass functions that you want available in the Knockout scope as keyword 
 """
 function knockout(template, data=Dict(), extra_js = js""; computed = [], methods = [])
     widget = Scope(imports=[
-        "knockout" => knockout_js,
-        "knockout_punches" => knockout_punches_js,
+        "knockout" => knockout_js(),
+        "knockout_punches" => knockout_punches_js(),
     ])
     widget(template)
     ko_data = Dict()

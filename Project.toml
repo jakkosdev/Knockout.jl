@@ -6,6 +6,7 @@ version = "0.2.5"
 [deps]
 JSExpr = "97c1335a-c9c5-57fe-bc5d-ec35cebe8660"
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+Memoize = "c03570c3-d221-55d1-a50c-7939bbd78826"
 Observables = "510215fc-4207-5dde-b226-833fc4488ee2"
 RelocatableFolders = "05181044-ff0b-4ac5-8273-598c1e38db00"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
